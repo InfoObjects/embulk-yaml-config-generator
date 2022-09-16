@@ -7,48 +7,48 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-Embulk yaml config generator will help you to generate Embulk yaml code from UI. It has simple ui inertface where from you can choose plugin options(CSV, MySql, Postgres, Jdbc, sqlserver, etc) to genrate yaml code. This application has been built with NestJs(server/api) and NextJs(UI).
+Embulk yaml config generator will help you to generate Embulk yaml code from UI. It has simple ui inertface where from you can choose plugin options(CSV, MySql, Postgres, Jdbc, sqlserver, etc) to genrate yaml code. This application has been built with NestJs(back-end) and NextJs(front-end).
 
 <img src="screenshots/screenshot1.png" style=" width:100%; " />
 
 ## Quick start
 
-Server setup
+back-end setup
 
 ```bash
-cd server
+cd back-end
 npm install
 npm run start
 ```
-UI setup
+fornt-end setup
 ```bash
-cd UI
+cd fornt-end
 npm install
 npm run dev
 ```
 
-## Server Configuration
+## Back-end Configuration
 
 Change default port number 
 ```bash
-//Goto file location /server/src/main.ts and find the line
+//Goto file location /back-end/src/main.ts and find the line
 await app.listen(3200); 
 //in bootstrap function you can change nestJs port number from here.
 ```
 whitelist url's 
 ```bash
-//There maybe CORS issue when you use server api on UI app.
-//Goto file location /server/src/main.ts and find the line 
+//There maybe CORS issue when you use server api on front-end app.
+//Goto file location /back-end/src/main.ts and find the line 
 const whitelist = ['http://localhost:3000', 'http://localhost:3200'];
 //in bootstrap function, from here you update the domain name to avoid CORS issue.
 ```
 
 
-## UI Configuration
+## Front-end Configuration
 
 Change default api endpoint 
 ```bash
-//Goto file location /UI/utils/api.ts and find the line 
+//Goto file location /front-end/utils/api.ts and find the line 
 const endpoint = "http://localhost:3200/";
 //and from here you can change api endpoint.
 ```
