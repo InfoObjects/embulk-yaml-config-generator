@@ -9,13 +9,7 @@
 
 Embulk yaml config generator will help you to generate Embulk yaml code from UI. It has simple ui inertface where from you can choose plugin options(CSV, MySql, Postgres, Jdbc, sqlserver, etc) to genrate yaml code. This application has been built with NestJs(server/api) and NextJs(UI).
 
-## Screenshots
-
 <img src="screenshots/screenshot1.png" style=" width:100%; " />
-
-<img src="screenshots/screenshot3.png" style=" width:100%; " />
-
-<img src="screenshots/screenshot2.png" style=" width:100%; " />
 
 ## Quick start
 
@@ -58,6 +52,13 @@ Change default api endpoint
 const endpoint = "http://localhost:3200/";
 //and from here you can change api endpoint.
 ```
+## Screenshots
+
+<img src="screenshots/screenshot1.png" style=" width:100%; " />
+
+<img src="screenshots/screenshot3.png" style=" width:100%; " />
+
+<img src="screenshots/screenshot2.png" style=" width:100%; " />
 
 ## Useful Links
 
