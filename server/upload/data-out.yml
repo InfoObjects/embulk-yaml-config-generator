@@ -1,0 +1,23 @@
+exec:
+  max_threads: 10
+  min_output_tasks: 3
+in:
+  type: jdbc
+  driver_path: c:\users\upanwar\drivers\ojdbc8.jar
+  driver_class: oracle.jdbc.driver.OracleDriver
+  url: jdbc:oracle:thin:@dc1uaspnora01.res.prod.global:1521/D1CSTM_USERS_SERVICE.world
+  user: FORD
+  password: FORD_2020
+  query: |
+    SELECT dealer_id, bac, vin, surrogate_id, cust_org_name, cust_addr, cust_city, cust_state, cust_zip, cust_hphone, cust_wphone, cust_email, bus_cust_ind, do_not_solict, do_not_call, year, make, model, vehicle_status, lst_srv_dte, lst_srv_action, lst_srv_act_dte, lst_sale_action, lst_sale_act_dte, srv_off_1, srv_title_1, srv_off_price_1, srv_off_factor_1, srv_off_exp_dte1, srv_off1_disclaim1, srv_off1_disclaim2, srv_off1_disclaim3, srv_off_2, srv_title_2, srv_off_price_2, srv_off_factor_2, srv_off_exp_dte2, srv_off2_disclaim1, srv_off2_disclaim2, srv_off2_disclaim3, srv_off_3, srv_title_3, srv_off_price_3, srv_off_factor_3, srv_off_exp_dte3, srv_off3_disclaim1, srv_off3_disclaim2, srv_off3_disclaim3, srv_off_4, srv_title_4, srv_off_price_4, srv_off_factor_4, srv_off_exp_dte4, srv_off4_disclaim1, srv_off4_disclaim2, srv_off4_disclaim3, srv_off_5, srv_title_5, srv_off_price_5, srv_off_factor_5, srv_off_exp_dte5, srv_off5_disclaim1, srv_off5_disclaim2, srv_off5_disclaim3, srv_off_6, srv_title_6, srv_off_price_6, srv_off_factor_6, srv_off_exp_dte6, srv_off6_disclaim1, srv_off6_disclaim2, srv_off6_disclaim3, srv_off_7, srv_title_7, srv_off_price_7, srv_off_factor_7, srv_off_exp_dte7, srv_off7_disclaim1, srv_off7_disclaim2, srv_off7_disclaim3, act_subtype, act_type, act_recid, wk_factor_no, wk_act_comp_dte, posted_dte, loy_code_prev, onstar, new_customer, aspen_pass, score_date, sls_fname, sls_lname, distance, sls_id, veh_dlvy_dt, hh_match_cnt, serv_loy_prev, timp_date, cp_other_dlr, wp_other_dlr, everest_ind_class_cd, fco_ind, sic_4, sic_4_desc, pop_match_flag, serv_loy, life_stage 
+    FROM gm_adhoc.GM_PROPENSITY_REPORT_FCO  fetch first 5 rows only
+out:
+  type: postgresql
+  host: gpdevautorpt.res.prod.global
+  user: upanwar
+  password: Epsi@2027!
+  database: msv_cfg_dev
+  table: gm_propensity_report_fco
+  schema: public
+  mode: insert_direct
+  batch_size: 10000

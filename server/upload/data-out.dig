@@ -1,0 +1,69 @@
+timezone: UTC
+_export:
+  sh:
+    shell: ['powershell.exe']
+  pg:
+    !include: './config/gp.dig'
+  !include: './config/server.dig'
+  component_name: 'OD Campaign Data Load'
+  sub_component_name: 'OD Campaign Data Load'
+  file_type: 'CAMPAIGN'
++start:
+  echo>: start ${session_time}
++init_logging:
+  +set_env_param1:
+    py>: scripts.utility_functions.set_env_params
+    param_key: 'msg_type_name'
+    param_key_value: 'Information'
+  +set_env_param2:
+    py>: scripts.utility_functions.set_env_params
+    param_key: 'msg_text'
+    param_key_value: 'Start Package Execution :  ${component_name}'
+  +write_log:
+    pg>: ./queries/writeLog.sql
++ppf_entry:
+  pg>: ./queries/createPPFEntry.sql
+  store_last_results: first
++set_env_params:
+  py>: scripts.utility_functions.set_env_params
+  param_key: 'datasource_id'
+  param_key_value: ${pg.last_results.iu_processing_files}
++load_data:
+  sh>: embulk run .\embulk_config\config_campaign.yml.liquid
++get_count:
+  pg>: ./queries/getCampaignCount.sql
+  store_last_results: first
++update_success:
+  +update_ppf_with_success:
+    processing_status: 'C'
+    total_count: ${pg.last_results.campaign_count}
+    pg>: ./queries/updatePPFEntry.sql
++success_logging:
+  +set_env_param1:
+    py>: scripts.utility_functions.set_env_params
+    param_key: 'msg_type_name'
+    param_key_value: 'Information'
+  +set_env_param2:
+    py>: scripts.utility_functions.set_env_params
+    param_key: 'msg_text'
+    param_key_value: 'Start Package Completed :  ${component_name}'
+  +write_log:
+    pg>: ./queries/writeLog.sql
+_error:
+  +update_error:
+    processing_status: 'F'
+    total_count: 0
+    pg>: ./queries/updatePPFEntry.sql
+  +error_logging:
+    +set_env_param1:
+      py>: scripts.utility_functions.set_env_params
+      param_key: 'msg_type_name'
+      param_key_value: 'Error'
+    +set_env_param2:
+      py>: scripts.utility_functions.set_env_params
+      param_key: 'msg_text'
+      param_key_value: 'Package Execution Failed :  ${component_name}'
+    +write_log:
+      pg>: ./queries/writeLog.sql
++end:
+  echo>: finish ${session_time}

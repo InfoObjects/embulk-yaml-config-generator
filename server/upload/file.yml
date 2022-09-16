@@ -1,0 +1,19 @@
+exec:
+  max_threads: 8
+  min_output_tasks: 1
+in:
+  type: mysql
+  driver_path: jkads
+  host: hjaksd
+  port: 3306
+  asdhjkas: asdkla
+  use_raw_query_with_incremental: false
+filters:
+  - type: column
+    columns:
+      - {name: hjkasd, default: sad}
+      - {name: ajklsd, default: gau}
+out:
+  type: sqlserver
+  driver_type: asdads
+  port: 1433
