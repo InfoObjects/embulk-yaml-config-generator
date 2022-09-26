@@ -287,10 +287,10 @@ const Home: NextPage = () => {
         setSchema({ ...putSavedValues(schema, type, eventName) });
       }
     } else if (eventName === "send_email") {
-      if (type === "in" || type === "out") {
+      if (type === "out") {
         schema[type] = _.cloneDeep([
           ...sendEmailSchema.common,
-          ...sendEmailSchema[type === "in" ? "input" : "output"],
+          ...sendEmailSchema["output"],
         ]);
         setSchema({ ...putSavedValues(schema, type, eventName) });
       }

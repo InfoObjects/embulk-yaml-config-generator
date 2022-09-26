@@ -1,3 +1,5 @@
+// schema start for exec plugin
+
 export const exec = [
   {
     title: "max_threads",
@@ -19,6 +21,10 @@ export const exec = [
     withQuotes: false,
   },
 ];
+
+// schema end for exec plugin
+
+// schema start for in & out plugin
 
 export const mysqlSchema = {
   common: [
@@ -1737,6 +1743,10 @@ export const sendEmailSchema = {
   ],
 };
 
+// schema end for in & out plugin
+
+// schema start for filters plugin
+
 export const filters = [
   {
     title: "columns",
@@ -2815,3 +2825,4 @@ export const filters = [
     ],
   },
 ];
+// schema end for filters plugin

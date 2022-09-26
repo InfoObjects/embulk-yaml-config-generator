@@ -22,7 +22,7 @@ const Header: React.FC<Prop> = ({pageDetail}) => {
               height="40"
               className="me-2 d-inline-block align-top"
             />{" "}
-            <span className="fs-4">{pageDetail.title}</span>
+            <span className="fs-4">{(pageDetail?.title ? pageDetail.title : '')}</span>
           </Navbar.Brand>
         </Link>
       </Container>
