@@ -77,6 +77,7 @@ Basic Fields:
 - `type`: It will define how this object will be used. Currently we supprot text, radio, textarea, array_of_strings, array_of_objects, nested, nested_without_title, multiple_key_value & multiple_key_objects.
 - `defaultValue`: It is optional property, If we provide any value here then it will be used as initial value or pre-field value for this object. Currently it is supporting text, radio & textarea.
 - `required`: When it is true, element will be visible & requird in UI, but if it is false then default it will be hidden and button will be there so user can choose if they want to use this property or not. 
+- `options`: It is optional property. It should be either `array_of_string` or `array_of_object`. In case of `radio` type it will be an `array_of_string`. It cannot used with `text` or `textarea` type.
 - `readOnly`: It is optional property. When it is `true` object will be freezed on UI.
 - `hiddenWhen`: It is optional property. It will take another property title in value, for ex. `hiddenWhen: "table"` here this object will be hidden when `table` will be visible on UI. 
 - `showWhen`: It is optional property. It will take another property title in value, for ex. `showWhen: "query"` here this object will be visible when `query` will be visible on UI.
