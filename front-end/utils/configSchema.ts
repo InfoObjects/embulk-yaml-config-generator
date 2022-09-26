@@ -1953,7 +1953,7 @@ export const filters = [
         ],
       },
       {
-        title: "from_column ",
+        title: "from_column",
         type: "nested",
         required: false,
         options: [

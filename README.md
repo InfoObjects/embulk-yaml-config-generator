@@ -67,16 +67,219 @@ Embulk plugin's default configurations are placed in file `front-end/utils/confi
 Basic Fields:
 ```javascript
 {
-	title: "driver_path",
-	type: "text",
-	defaultValue: "",
-	required: true,
+  title: "driver_path",
+  type: "text",
+  defaultValue: "",
+  required: true,
 }
 ```
 - `title`: This is plugin configuration title.
 - `type`: It will define how this object will be used. Currently we supprot text, radio, textarea, array_of_strings, array_of_objects, nested, nested_without_title, multiple_key_value & multiple_key_objects.
 - `defaultValue`: It is optional property, If we provide any value here then it will be used as initial value or pre-field value for this object. Currently it is supporting text, radio & textarea.
 - `required`: When it is true, element will be visible & requird in UI, but if it is false then default it will be hidden and button will be there so user can choose if they want to use this property or not. 
+- `readOnly`: It is optional property. When it is `true` object will be freezed on UI.
+- `hiddenWhen`: It is optional property. It will take another property title in value, for ex. `hiddenWhen: "table"` here this object will be hidden when `table` will be visible on UI. 
+- `showWhen`: It is optional property. It will take another property title in value, for ex. `showWhen: "query"` here this object will be visible when `query` will be visible on UI.
+
+Type: 
+
+- `text`: 
+  ```javascript
+  // js code
+  {
+    title: "driver_path",
+    type: "text",
+    defaultValue: "",
+    required: false,
+  }
+  // yaml output
+  driver_path: USER_INPUT_SOME_DATA
+  ```
+
+- `textarea`: 
+  ```javascript
+  // js code
+  {
+    title: "query",
+    type: "textarea",
+    required: true,
+  }
+  // yaml output
+  query: USER_INPUT_SOME_DATA
+  ```
+- `radio`: 
+  ```javascript
+  // js code
+  {
+    title: "ssl",
+    type: "radio",
+    defaultValue: "false",
+    options: ["true", "false"],
+    required: false,
+  }
+  // yaml output
+  ssl: false
+  ```
+- `array_of_strings`: 
+  ```javascript
+  // js code
+  {
+    title: "incremental_columns",
+    type: "array_of_strings",
+    required: false,
+  }
+  // yaml output
+  incremental_columns:
+    - USER_INPUT_SOME_DATA1
+    - USER_INPUT_SOME_DATA2
+  ```
+- `array_of_objects`: 
+  ```javascript
+  // js code
+  {
+    title: "decoders",
+    type: "array_of_objects",
+    required: false,
+    options: [
+      {
+        title: "type",
+        type: "text",
+        required: true,
+      },
+    ],
+  }
+  // yaml output
+  decoders:
+    - {type: USER_INPUT_SOME_DATA1}
+    - {type: USER_INPUT_SOME_DATA2}
+  ```
+- `nested`: 
+  ```javascript
+  // js code
+  {
+    title: "from_column",
+    type: "nested",
+    required: false,
+    options: [
+      {
+        title: "name",
+        type: "text",
+        required: true,
+      },
+      {
+        title: "unix_timestamp_unit",
+        type: "text",
+        required: true,
+      },
+      {
+        title: "timestamp_format",
+        type: "text",
+        required: true,
+      },
+    ],
+  }
+  // yaml output
+  from_column:
+    name: USER_INPUT_SOME_DATA1
+    unix_timestamp_unit: USER_INPUT_SOME_DATA2
+    timestamp_format: USER_INPUT_SOME_DATA3
+  ```
+- `nested_without_title`: 
+  ```javascript
+  // js code
+  {
+    title: "add_columns",
+    type: "nested_without_title",
+    required: false,
+    options: [
+      {
+        title: "type",
+        type: "text",
+        defaultValue: "column",
+        readOnly: true,
+        required: true,
+      },
+      {
+        title: "add_columns",
+        type: "array_of_objects",
+        required: false,
+        options: [
+          {
+            title: "name",
+            type: "text",
+            required: true,
+          },
+        ],
+      },
+    ],
+  }
+  // yaml output
+  - type: column
+    add_columns:
+      - {name: USER_INPUT_SOME_DATA1}
+  ```
+- `multiple_key_value`: 
+  ```javascript
+  // js code
+  {
+    title: "options",
+    type: "multiple_key_value",
+    required: false,
+    options: [
+      {
+        title: "key",
+        type: "text",
+        required: true,
+      },
+      {
+        title: "value",
+        type: "text",
+        required: true,
+      }
+    ]
+  }
+  // yaml output
+  options:
+    USER_INPUT_KEY1: USER_INPUT_VALUE1
+    USER_INPUT_KEY2: USER_INPUT_VALUE2
+  ```
+- `multiple_key_objects`: 
+  ```javascript
+  // js code
+  {
+    title: "column_options",
+    type: "multiple_key_objects",
+    required: false,
+    options: [
+      {
+        title: "value_type",
+        type: "text",
+        required: false,
+      },
+      {
+        title: "type",
+        type: "text",
+        required: false,
+      },
+      {
+        title: "timestamp_format",
+        type: "text",
+        required: false,
+      },
+      {
+        title: "timezone",
+        type: "text",
+        required: false,
+      },
+    ],
+  }
+  // yaml output
+  column_options:
+    key1: {value_type: USER_INPUT_VALUE1, type: USER_INPUT_VALUE2}
+    key2: {timestamp_format: USER_INPUT_VALUE3, timezone: USER_INPUT_VALUE4}
+    key3: {value_type: string, type: string}
+    key4: {timestamp_format: '%Y-%m-%d %H:%M:%S', timezone: UTC}
+  ```
 ## Back-end Configuration
 
 Change default port number 
