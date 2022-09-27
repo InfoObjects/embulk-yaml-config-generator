@@ -64,7 +64,54 @@ Embulk plugin's default configurations are placed in file `front-end/utils/confi
     - `common`: Some of configurations are same in input and output plugin, so this is  the array who has common plugin options and these options will be merge in both input & output plugin options.
 - `filters - plugins`: There is a variable name as `filters` in file, here filter plugin options are available.
 
-Basic Fields:
+### Add new plugin
+In process to add a new plugin for `in` or `out`, create a new const variable in file `front-end/utils/configSchema.ts`.
+```javascript
+// schema start for in & out plugin
+export const newPluginName = {
+  common: [], // common options, these will use in both input & output
+  input: [],  // array of input plugin options.
+  output: []  // array of output plugin options.
+}
+// schema end for in & out plugin
+```
+After createing fields for `in`/`out` plugin within this new variable, we have to import this new variable into `front-end/utils/constants.ts` and add new plugin object into variable `embulkOptions`.
+```javascript
+import {
+  newPluginName,
+} from "./configSchema";
+
+.....
+.....
+
+export const embulkOptions = [  
+  .
+  .
+  {
+    key: "pluginName",    // use into YAML output as plugin type.
+    name: "Plugin Name",  // use to display on application UI.
+    plugin: newPluginName // plugin is the object schema of fields.
+  },
+];
+```
+If you want too add new plugin into `filters` then you can simply add new plugin object into `filters` variable  in file `front-end/utils/configSchema.ts`.
+```javascript
+// schema start for filters plugin
+
+export const filters = [ 
+  .
+  .
+  {
+    title: "ruby_proc", // plugin name, in YAML(- type: ruby_proc)
+    type: "nested_without_title",
+    required: false,
+    options: [], // plugin fields object
+  },
+];
+// schema end for filters plugin
+```
+
+### Basic Fields:
 ```javascript
 {
   title: "driver_path",
@@ -82,7 +129,7 @@ Basic Fields:
 - `hiddenWhen`: It is optional property. It will take another property title in value, for ex. `hiddenWhen: "table"` here this object will be hidden when `table` will be visible on UI. 
 - `showWhen`: It is optional property. It will take another property title in value, for ex. `showWhen: "query"` here this object will be visible when `query` will be visible on UI.
 
-Type: 
+### Type: 
 
 - `text`: 
   ```javascript
