@@ -64,6 +64,8 @@ Embulk plugin's default configurations are placed in file `front-end/utils/confi
     - `common`: Some of configurations are same in input and output plugin, so this is  the array who has common plugin options and these options will be merge in both input & output plugin options.
 - `filters - plugins`: There is a variable name as `filters` in file, here filter plugin options are available.
 
+<img src="screenshots/filepath.png" />
+
 ### Add new plugin
 In process to add a new plugin for `in` or `out`, create a new const variable in file `front-end/utils/configSchema.ts`.
 ```javascript
@@ -94,6 +96,8 @@ export const embulkOptions = [
   },
 ];
 ```
+<img src="screenshots/screenshot4.png" style=" width:100%; " />
+
 If you want too add new plugin into `filters` then you can simply add new plugin object into `filters` variable  in file `front-end/utils/configSchema.ts`.
 ```javascript
 // schema start for filters plugin
@@ -358,6 +362,8 @@ const endpoint = "http://localhost:3200/";
 <img src="screenshots/screenshot1.png" style=" width:100%; " />
 
 <img src="screenshots/screenshot3.png" style=" width:100%; " />
+
+<img src="screenshots/screenshot4.png" style=" width:100%; " />
 
 <img src="screenshots/screenshot2.png" style=" width:100%; " />
 
