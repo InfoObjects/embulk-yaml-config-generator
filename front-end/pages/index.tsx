@@ -246,43 +246,12 @@ const Home: NextPage = () => {
   };
 
   const onOptionChange = (eventName: any, type: string) => {
-    if (eventName === "mysql") {
+    const pluginSchema = _.find(embulkOptions, { 'key': eventName });
+    if(pluginSchema){
       if (type === "in" || type === "out") {
         schema[type] = _.cloneDeep([
-          ...mysqlSchema.common,
-          ...mysqlSchema[type === "in" ? "input" : "output"],
-        ]);
-        setSchema({ ...putSavedValues(schema, type, eventName) });
-      }
-    } else if (eventName === "file") {
-      if (type === "in" || type === "out") {
-        schema[type] = _.cloneDeep([
-          ...csvSchema.common,
-          ...csvSchema[type === "in" ? "input" : "output"],
-        ]);
-        setSchema({ ...putSavedValues(schema, type, eventName) });
-      }
-    } else if (eventName === "postgresql") {
-      if (type === "in" || type === "out") {
-        schema[type] = _.cloneDeep([
-          ...postgresSchema.common,
-          ...postgresSchema[type === "in" ? "input" : "output"],
-        ]);
-        setSchema({ ...putSavedValues(schema, type, eventName) });
-      }
-    } else if (eventName === "jdbc") {
-      if (type === "in" || type === "out") {
-        schema[type] = _.cloneDeep([
-          ...jdbcSchema.common,
-          ...jdbcSchema[type === "in" ? "input" : "output"],
-        ]);
-        setSchema({ ...putSavedValues(schema, type, eventName) });
-      }
-    } else if (eventName === "sqlserver") {
-      if (type === "in" || type === "out") {
-        schema[type] = _.cloneDeep([
-          ...msSqlSchema.common,
-          ...msSqlSchema[type === "in" ? "input" : "output"],
+          ...pluginSchema.plugin.common,
+          ...pluginSchema.plugin[type === "in" ? "input" : "output"],
         ]);
         setSchema({ ...putSavedValues(schema, type, eventName) });
       }
