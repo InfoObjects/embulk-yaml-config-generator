@@ -29,7 +29,7 @@ npm run dev
 ```
 
 ## Embulk configuration
-Embulk uses a YAML file to define a bulk data loading. Here is an example of the file:
+Embulk uses a YAML file to define a bulk data loading configuration. Here is an example of the file:
 
 A configuration file consists of following sections:
 
@@ -48,13 +48,13 @@ In this application some plugins are configured so you can just use them after i
 | [postgresql](https://github.com/embulk/embulk-input-jdbc/tree/master/embulk-input-postgresql) | [postgresql](https://github.com/embulk/embulk-output-jdbc/blob/master/embulk-output-postgresql) | [add_time](https://github.com/treasure-data/embulk-filter-add_time) |
 | [oracle](https://github.com/embulk/embulk-input-jdbc/blob/master/embulk-input-jdbc) | [oracle](https://github.com/embulk/embulk-output-jdbc/blob/master/embulk-output-jdbc) | [to_json](https://github.com/civitaspo/embulk-filter-to_json) |
 | [mssql](https://github.com/embulk/embulk-input-jdbc/blob/master/embulk-input-sqlserver) | [mssql](https://github.com/embulk/embulk-output-jdbc/blob/master/embulk-output-sqlserver) | [remove_columns](https://www.embulk.org/docs/built-in.html#remove-columns-filter-plugin) |
-| - | sendEmail | [rename](https://www.embulk.org/docs/built-in.html#rename-filter-plugin) |
+| - | [send_email](https://github.com/InfoObjects/embulk-output-send_email) | [rename](https://www.embulk.org/docs/built-in.html#rename-filter-plugin) |
 | - | stdout | [ruby_proc](https://github.com/joker1007/embulk-filter-ruby_proc) |
-| - | - | [mysqllookup](#) |
-| - | - | [oraclelookup](#) |
-| - | - | [postgreslookup](#) |
-| - | - | [LookUpFilter_SQL](#) |
-| - | - | [LookUpCSV](#) |
+| - | - | [mysql_lookup](https://github.com/InfoObjects/embulk-filter-mysql_lookup) |
+| - | - | [oracle_lookup](https://github.com/InfoObjects/embulk-filter-oracle_lookup) |
+| - | - | [postgress_lookup](https://github.com/InfoObjects/embulk-filter-postgres_lookup) |
+| - | - | [mssql_lookup](https://github.com/InfoObjects/embulk-filter-mssql_lookup) |
+| - | - | [csv_lookup](https://github.com/InfoObjects/embulk-filter-csv_lookup) |
 
 ## Instructions to configure new field/plugin
 Embulk plugin's default configurations are placed in file `front-end/utils/configSchema.ts`.

@@ -2424,14 +2424,14 @@ export const filters = [
     ],
   },
   {
-    title: "mysqllookup",
+    title: "mysql_lookup",
     type: "nested_without_title",
     required: false,
     options: [
       {
         title: "type",
         type: "text",
-        defaultValue: "mysqllookup",
+        defaultValue: "mysql_lookup",
         readOnly: true,
         required: true,
         withQuotes: false,
@@ -2507,14 +2507,14 @@ export const filters = [
     ],
   },
   {
-    title: "oraclelookup",
+    title: "oracle_lookup",
     type: "nested_without_title",
     required: false,
     options: [
       {
         title: "type",
         type: "text",
-        defaultValue: "oraclelookup",
+        defaultValue: "oracle_lookup",
         readOnly: true,
         required: true,
         withQuotes: false,
@@ -2590,14 +2590,14 @@ export const filters = [
     ],
   },
   {
-    title: "postgreslookup",
+    title: "postgress_lookup",
     type: "nested_without_title",
     required: false,
     options: [
       {
         title: "type",
         type: "text",
-        defaultValue: "postgreslookup",
+        defaultValue: "postgress_lookup",
         readOnly: true,
         required: true,
         withQuotes: false,
@@ -2672,14 +2672,14 @@ export const filters = [
     ],
   },
   {
-    title: "LookUpFilter_SQL",
+    title: "mssql_lookup",
     type: "nested_without_title",
     required: false,
     options: [
       {
         title: "type",
         type: "text",
-        defaultValue: "LookUpFilter_SQL",
+        defaultValue: "mssql_lookup",
         readOnly: true,
         required: true,
         withQuotes: false,
@@ -2754,42 +2754,29 @@ export const filters = [
     ],
   },
   {
-    title: "LookUpCSV",
+    title: "csv_lookup",
     type: "nested_without_title",
     required: false,
     options: [
       {
         title: "type",
         type: "text",
-        defaultValue: "LookUpFilter_SQL",
+        defaultValue: "csv_lookup",
         readOnly: true,
         required: true,
         withQuotes: false,
       },
       {
-        title: "mappingColumn_Key",
-        type: "text",
-        required: true,
+        title: "mapping_from",
+        type: "array_of_strings",
+        required: false,
         withQuotes: false,
       },
       {
-        title: "mappingColumn_Value",
-        type: "array_of_objects",
+        title: "mapping_to",
+        type: "array_of_strings",
         required: false,
-        options: [
-          {
-            title: "name",
-            type: "text",
-            required: false,
-            withQuotes: false,
-          },
-          {
-            title: "type",
-            type: "text",
-            required: false,
-            withQuotes: false,
-          },
-        ],
+        withQuotes: false,
       },
       {
         title: "new_columns",
@@ -2809,18 +2796,6 @@ export const filters = [
             withQuotes: false,
           },
         ],
-      },
-      {
-        title: "mapping_from",
-        type: "array_of_strings",
-        required: false,
-        withQuotes: false,
-      },
-      {
-        title: "mapping_to",
-        type: "array_of_strings",
-        required: false,
-        withQuotes: false,
       },
     ],
   },
