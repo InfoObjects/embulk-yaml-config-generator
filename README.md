@@ -10,6 +10,10 @@ From strategy, to implementation, to ongoing managed services, Infoobjects creat
 
 Embulk yaml config generator will help you to generate Embulk yaml code from UI. It has simple ui inertface where from you can choose plugin options(CSV, MySql, Postgres, Jdbc, sqlserver, etc) to genrate yaml code. This application has been built with NestJs(back-end) and NextJs(front-end).
 
+## Preview
+
+A fully functional demo is available, so feel free to play with it. See a [Live Demo](http://54.177.118.22:18079/).
+
 <img src="screenshots/screenshot1.png" style=" width:100%; " />
 
 ## Quick start
